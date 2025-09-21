@@ -1,0 +1,32 @@
+install
+1. buat Folder Kosong """forge init"""
+2. masukkan script/Deploy.s.sol paste dengan script baru
+3. copy .env masukkan ke folder
+4. ketik command 
+      """source .env""" 
+5. install lagi dengan 
+      """forge init --force"""
+6. ketik 
+      """forge build"""
+
+
+
+
+1. Konversikan 0.001 ETH menjadi 0.001 WETH
+cast send 0x4200000000000000000000000000000000000006 "deposit()" --value 0.001ether --rpc-url $BASE --private-key $PRIVATE_KEY
+2. Kirim 0.001 WETH ke kontrak
+cast send 0x4200000000000000000000000000000000000006 "transfer(address,uint256)" YOUR_CONTRACT_ADDRESS 1000000000000000 --rpc-url $BASE --private-key $PRIVATE_KEY
+3. Lakukan Flashloan
+cast send YOUR_CONTRACT_ADDRESS "requestFlashLoan(address,uint256)" 0x4200000000000000000000000000000000000006 1000000000000000000 --rpc-url $BASE --private-key $PRIVATE_KEY
+4. Withdaw 1 ETH BASE network
+cast send 0xYourContractAddressHere \
+  "requestFlashLoanRepaid(address,uint256,address)" \
+  0x4200000000000000000000000000000000000006 \
+  1000000000000000000 \
+  0xYourReceiverAddressHere($ADDRESS1or$ADDRESS2) \
+  --rpc-url $BASE \
+  --private-key $PRIVATE_KEY
+
+cast send 0xYourContractAddressHere "requestFlashLoanRepaid(address,uint256,address)" 0x4200000000000000000000000000000000000006 1000000000000000000 $ADDRESS1or$ADDRESS2 --rpc-url $BASE --private-key $PRIVATE_KEY
+
+
