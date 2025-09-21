@@ -12,8 +12,8 @@ module.exports = {
           "https://mainnet.base.org" // official RPC for Base mainnet
         ),
       network_id: 8453,
-      gas: 5000000,
-      gasPrice: 21000000
+      gas: 21000,
+      gasPrice: 21000
     }
   },
 
