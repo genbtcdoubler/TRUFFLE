@@ -8,17 +8,12 @@ module.exports = {
       provider: () =>
         new HDWalletProvider(
           process.env.PRIVATE_KEY,
-          "https://mainnet.base.org"
+          "https://mainnet.base.org" // official RPC for Base mainnet
         ),
-      network_id: 8453,
-      gas: 21000,                   
-      gasPrice: 500000000          
-    }
-  },
-
-  compilers: {
-    solc: {
-      version: "0.8.20"
+      network_id: 8453,        // Base mainnet chain ID
+      gas: 21000,              // fixed gas limit
+      gasPrice: 2000000000     // 2 gwei (small fee) in wei
+      // increase if txs stuck: 2 gwei = 2000000000
     }
   }
 };
